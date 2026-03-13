@@ -1,3 +1,89 @@
 Bonjour, 
 ceci est le début d'une grande aventure. C'est le début d'une rédaction qui ne finira jamais, mais qui commence aujourd'hui.
 
+Tutoriel GIT :
+
+Commandes à faire au quotidien :
+# 1. Récupérer les modifications de votre collaborateur (toujours commencer par ça !)
+git pull
+
+# 2. Modifier votre fichier (avec un éditeur de texte)
+nano document.txt
+
+# 3. Sauvegarder vos modifications dans Git
+git add document.txt
+git commit -m "Décrivez ce que vous avez ajouté"
+
+# 4. Envoyer sur GitHub
+git push
+
+######################################################################################
+
+Voici maintenant toutes les commandes essentielles, opération par opération.
+
+1. Créer une branche et y basculer
+bash# Créer une branche et y aller directement
+git checkout -b ma-branche
+
+# Vérifier sur quelle branche vous êtes (l'étoile = branche active)
+git branch
+
+2. Passer d'une branche à l'autre
+bash# Retourner sur master
+git checkout master
+
+# Aller sur une autre branche existante
+git checkout ma-branche
+
+Vos fichiers changent automatiquement de contenu à chaque bascule — c'est la magie des branches.
+
+
+3. Voir et comparer les branches
+bash# Lister toutes les branches locales
+git branch
+
+# Lister aussi les branches distantes (GitHub)
+git branch -a
+
+# Comparer deux branches : ce que ma-branche a de plus que master
+git diff master..ma-branche
+
+# Voir les commits de chaque branche en une ligne
+git log --oneline --graph --all
+La commande git log --oneline --graph --all est particulièrement utile : elle affiche un mini-schéma ASCII de toutes vos branches dans le terminal.
+
+4. Envoyer une branche sur GitHub
+bashgit push -u origin ma-branche
+Votre collaborateur peut ensuite la récupérer avec :
+bashgit fetch
+git checkout ma-branche
+
+5. Fusionner une branche dans master (merge)
+bash# D'abord, se positionner sur la branche de destination
+git checkout master
+
+# Fusionner
+git merge ma-branche
+Si tout se passe bien, Git fusionne automatiquement. En cas de conflit (les deux branches ont modifié la même ligne), Git vous le signale et vous devez ouvrir le fichier pour choisir quelle version garder, puis :
+bashgit add document.txt
+git commit -m "Résolution du conflit"
+
+6. Supprimer une branche après fusion
+bash# Supprimer en local (une fois fusionnée)
+git branch -d ma-branche
+
+# Supprimer sur GitHub aussi
+git push origin --delete ma-branche
+
+Résumé du cycle de travail collaboratif avec branches
+bashgit checkout -b nouvelle-idee   # créer et basculer
+# ... modifier document.txt ...
+git add document.txt
+git commit -m "Description"
+git push -u origin nouvelle-idee  # envoyer sur GitHub
+
+# Quand c'est prêt :
+git checkout master
+git merge nouvelle-idee
+git push
+git branch -d nouvelle-idee
