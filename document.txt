@@ -1,5 +1,8 @@
+blabla
+version 2
 Bonjour, 
-ceci est le début d'une grande aventure. C'est le début d'une rédaction qui ne finira jamais, mais qui commence aujourd'hui.
+ceci est le début d'une grande aventure. C'est le début d'une rédaction qui ne finira jamais,
+mais qui commence aujourd'hui.
 
 Tutoriel GIT :
 
@@ -50,7 +53,9 @@ git diff master..ma-branche
 
 # Voir les commits de chaque branche en une ligne
 git log --oneline --graph --all
-La commande git log --oneline --graph --all est particulièrement utile : elle affiche un mini-schéma ASCII de toutes vos branches dans le terminal.
+
+La commande git log --oneline --graph --all est particulièrement utile : elle affiche un mini-schéma ASCII
+de toutes vos branches dans le terminal.
 
 4. Envoyer une branche sur GitHub
 bashgit push -u origin ma-branche
@@ -64,7 +69,9 @@ git checkout master
 
 # Fusionner
 git merge ma-branche
-Si tout se passe bien, Git fusionne automatiquement. En cas de conflit (les deux branches ont modifié la même ligne), Git vous le signale et vous devez ouvrir le fichier pour choisir quelle version garder, puis :
+Si tout se passe bien, Git fusionne automatiquement. En cas de conflit (les deux branches ont 
+modifié la même ligne), Git vous le signale et vous devez ouvrir le fichier pour choisir quelle
+version garder, puis :
 bashgit add document.txt
 git commit -m "Résolution du conflit"
 
