@@ -1,4 +1,4 @@
-name: Sync document vers Google Drive
+name: Sync document vers Dropbox
 
 on:
   push:
@@ -13,16 +13,10 @@ jobs:
       - name: Récupérer le dépôt
         uses: actions/checkout@v4
 
-      - name: Installer Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Installer la librairie Google
-        run: pip install google-api-python-client google-auth
-
-      - name: Envoyer sur Google Drive
-        env:
-          GDRIVE_CREDENTIALS: ${{ secrets.GDRIVE_CREDENTIALS }}
-          GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
-        run: python upload.py
+      - name: Envoyer document.txt vers Dropbox
+        run: |
+          curl -X POST https://content.dropboxapi.com/2/files/upload \
+            --header "Authorization: Bearer ${{ secrets.DROPBOX_TOKEN }}" \
+            --header "Dropbox-API-Arg: {\"path\": \"/GIT-TEST/document.txt\", \"mode\": \"overwrite\"}" \
+            --header "Content-Type: application/octet-stream" \
+            --data-binary @document.txt
